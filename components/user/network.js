@@ -32,6 +32,16 @@ router.patch('/:id', function(req, res){
         .catch(e => {
             response.error(req, res, 'Error Interno al editar usuario', 500, e);
         });
-})
+});
+
+router.delete('/:id', function(req, res){
+    controller.deleteUser(req.params.id)
+        .then((data) => {
+            response.success(req, res, data, 200)
+        })
+        .catch(e => {
+            response.success(req, res, 'Error al intentar eliminar', 500, 3)
+        });
+});
 
 module.exports = router;

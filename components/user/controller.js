@@ -29,8 +29,20 @@ async function updateUser(id, name){
     });
 };
 
+async function deleteUser(id){
+    if(!id){
+        reject('Invalid Data')
+        return false;
+    }
+    return new Promise((resolve, reject)=> {
+        const result = store.delete(id)
+        resolve(result);
+    });
+};
+
 module.exports = {
     addUser,
     getUsers,
     updateUser,
+    deleteUser
 }
