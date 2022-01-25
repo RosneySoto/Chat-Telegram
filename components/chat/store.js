@@ -13,7 +13,7 @@ function listChatsById(userId){
                 users: userId,
             }
         }
-
+        
         Model.find(filter)
             .populate('users')
             .exec((err, populated) => {
