@@ -20,6 +20,8 @@ const mySchema = new Schema({
     },
     date: Date,
 
+    file: String,
+
 });
 
 const model = mongoose.model('Message', mySchema);

@@ -1,7 +1,12 @@
 const express = require('express');
+const multer = require('multer'); // Con esat dependencia subimos imagenes a nuestro proyecto
 const response = require('../../network/response');
 const controller = require('./controller')
 const router = express.Router();
+
+const upload = multer({ //Lo instanciamos
+    dest: 'public/files/',
+});
 
 router.get('/', function(req, res){
     const filterMessages = req.query.chat || null;
@@ -14,8 +19,9 @@ router.get('/', function(req, res){
     })
 });
 
-router.post('/', function(req, res){
-    controller.addMessage(req.body.chat, req.body.user, req.body.message)
+                //Con el upload.single('file'), creamos la carpeta upload en el proyecto y guardamos las imagenes
+router.post('/', upload.single('file'), function(req, res){
+    controller.addMessage(req.body.chat, req.body.user, req.body.message, req.file)
         .then((fullMessage)=>{
             response.success(req, res, fullMessage, 201);
         })

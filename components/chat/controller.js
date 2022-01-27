@@ -1,17 +1,18 @@
 const store = require('./store');
 
-function addChat(users){
+function addChat(user){
+    console.log(user)
 
-    if(!users || !Array.isArray(users)){
+    /*if(!user || !Array.isArray(user)){
         return Promise.reject('Invalid user list');
-    }
+    }*/
     const chat = {
-        users: users,
-    };
-    return store.add(chat);    
+        user: user,
+    }
+    return store.add(chat);
 };
 
-function listChatsById(userId) {
+function listChatsById(userId) {//userId
     return store.list(userId);
 };
 

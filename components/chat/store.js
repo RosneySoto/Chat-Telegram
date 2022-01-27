@@ -2,7 +2,7 @@ const Model = require('./model');
 
 function addChat(chat){
     const myChat = new Model(chat);
-    myChat.save();
+    return myChat.save();
 };
 
 function listChatsById(userId){
@@ -10,12 +10,12 @@ function listChatsById(userId){
         let = filter = {};
         if(userId){
             filter = {
-                users: userId,
+                user: userId,
             }
         }
         
         Model.find(filter)
-            .populate('users')
+            .populate('user')
             .exec((err, populated) => {
                 if(err){
                     reject(err);

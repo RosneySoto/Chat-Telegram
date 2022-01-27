@@ -4,7 +4,7 @@ const controller = require('./controller');
 const router = express.Router();
 
 router.post('/', function(req, res) {
-    controller.addChat(req.body.users)
+    controller.addChat(req.body.user)
         .then(data => {
             response.success(req, res, data, 201);
         })
@@ -14,7 +14,7 @@ router.post('/', function(req, res) {
 });
 
 router.get('/:userId', function(req, res){
-    controller.listChatsById(req.params.userId)
+    controller.listChatsById(req.params.userId)//para traer toda la lista de chat es sin parametros
         .then((users) => {
             response.success(req, res, users, 200);
         })
